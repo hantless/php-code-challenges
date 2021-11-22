@@ -2,24 +2,28 @@
 
 class Person {
 	private $name;
-	private $dob;
+	private $birthdate;
 	
-	function __construct($name, $dob) {
+	function __construct($name, $birthdate) {
 		$this->name = $name;
-		$this->dob = $dob;	
+		$this->birthdate = $birthdate;	
 	}
 	
 	public function get_name() {
 		return $this->name;
 	}
 	
-	public function get_dob() {
-		return $this->dob;
+	public function get_birthdate() {
+		return $this->birthdate;
 	}
 	
 	public function get_age() {
 		// Challenge: define this function
+		return $this->get_birthdate_as_date()->diff(new DateTime('now'))->format('%y');
+	}
 
+	private function get_birthdate_as_date() {
+		return new DateTime($this->get_birthdate());
 	}
 }
 
